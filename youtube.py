@@ -9,8 +9,8 @@ import json
 import signal
 import argparse
 
-from urlparse import unquote
-from urllib2 import urlopen
+from urllib.parse import unquote
+from urllib.request import urlopen
 
 
 CHUNK_SIZE = 16 * 1024  # 16 Kb
@@ -146,7 +146,7 @@ def get_videos(my_url):
 def download(url, filename):
     response = urlopen(url)
     bytes_received = 0
-    download_size = int(response.info().getheader("Content-Length"))
+    download_size = int(response.getheader("Content-Length"))
 
     with open(filename, 'wb') as dst_file:
         while True:
